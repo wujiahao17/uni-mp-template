@@ -116,7 +116,7 @@ const onSubmit = async () => {
       <view class="form-content">
         <view class="form-item">
           <text class="label">账号</text>
-          <text class="account">{{ profile?.account }}</text>
+          <text class="account">{{ profile.account }}</text>
         </view>
         <view class="form-item">
           <text class="label">昵称</text>
@@ -126,7 +126,6 @@ const onSubmit = async () => {
           <text class="label">性别</text>
           <radio-group @change="onGenderChange">
             <label class="radio">
-              <!-- gender是男或女，不能与1或0比较 -->
               <radio value="0" color="#27ba9b" :checked="profile?.gender === 0" />
               男
             </label>
@@ -143,10 +142,10 @@ const onSubmit = async () => {
             mode="date"
             start="1900-01-01"
             :end="new Date()"
-            :value="profile?.birthday"
+            :value="profile.birthday"
             @change="onBirthdayChange"
           >
-            <view v-if="profile?.birthday">{{ profile?.birthday }}</view>
+            <view v-if="profile.birthday">{{ profile.birthday }}</view>
             <view class="placeholder" v-else>请选择⽇期</view>
           </picker>
         </view>
@@ -158,7 +157,7 @@ const onSubmit = async () => {
             :value="fullLocation?.split(' ')"
             @change="onFullLocationChange"
           >
-            <view v-if="profile?.fullLocation">{{ fullLocation }}</view>
+            <view v-if="fullLocation">{{ fullLocation }}</view>
             <view class="placeholder" v-else>请选择城市</view>
           </picker>
         </view>
