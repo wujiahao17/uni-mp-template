@@ -11,7 +11,6 @@ const orderTypes = [
 // 获取会员信息
 const memberStore = useMemberStore()
 console.log('memberStore :>> ', memberStore.profile?.avatar)
-console.log('memberStore :>> ', memberStore.profile?.account)
 </script>
 
 <template>
@@ -87,9 +86,9 @@ console.log('memberStore :>> ', memberStore.profile?.account)
           {{ item.text }}
         </navigator>
         <!-- 客服 -->
-        <button class="icon-handset navigator p-0 m-0 bg-transparent leading-[inherit]" open-type="contact"
-          >售后</button
-        >
+        <button class="icon-handset navigator p-0 m-0 bg-transparent leading-[inherit]" open-type="contact">
+          售后
+        </button>
       </view>
     </view>
     <!-- 猜你喜欢 -->

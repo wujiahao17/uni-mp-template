@@ -18,6 +18,7 @@ const getMemberProfileData = async () => {
     ' ' +
     codeToText[profile.value.countyCode?.replace(/0+$/, '')]
 }
+
 onLoad(() => {
   getMemberProfileData()
 })
