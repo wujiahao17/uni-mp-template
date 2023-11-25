@@ -4,6 +4,7 @@ import AddressPanel from './components/AddressPanel.vue'
 import ServicePanelVue from './components/ServicePanel.vue'
 
 import type {
+  SkuPopupEvent,
   SkuPopupInstance,
   SkuPopupLocaldata
 } from '@/components/vk-data-goods-sku-popup/vk-data-goods-sku-popup'
@@ -94,6 +95,7 @@ const openPopup = (name: typeof popupName.value) => {
 const isShowSku = ref(false)
 // 商品信息
 const localdata = ref({} as SkuPopupLocaldata)
+//
 
 //SKU组件实例
 const skuPopuRef = ref<SkuPopupInstance>()
@@ -101,11 +103,27 @@ const skuPopuRef = ref<SkuPopupInstance>()
 const selectArrText = computed(() => {
   return skuPopuRef.value?.selectArr?.join(' ').trim() || '请选择商品规格'
 })
+
+//加入购物车
+const onAddCart = async (ev: SkuPopupEvent) => {
+  await postMemberCartAPI({ attrsText: selectArrText.value, count: ev.buy_num, id: ev.goods_id })
+  uni.showToast({ title: '添加成功' })
+  isShowSku.value = false
+}
+
+//立即购买
+const onBuyNow = (ev: SkuPopupEvent) => {
+  uni.navigateTo({
+    url: `/pagesOrder/create/create?id=${ev.goods_id}&count=${ev.buy_num}&attrsText=${selectArrText.value}`
+  })
+}
 </script>
 
 <template>
   <!-- SKU弹窗组件 -->
   <vk-data-goods-sku-popup
+    @add-cart="onAddCart"
+    @buy-now="onBuyNow"
     v-model="isShowSku"
     :localdata="localdata"
     :mode="mode"
@@ -215,7 +233,7 @@ const selectArrText = computed(() => {
     <view class="icons">
       <button class="icons-button"><text class="icon-heart"></text>收藏</button>
       <button class="icons-button" open-type="contact"> <text class="icon-handset"></text>客服 </button>
-      <navigator class="icons-button" url="/pages/cart/cart" open-type="switchTab">
+      <navigator class="icons-button" url="/pages/cart/cart2" open-type="navigate">
         <text class="icon-cart"></text>购物车
       </navigator>
     </view>

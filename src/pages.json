@@ -12,17 +12,17 @@
     {
       "path": "pages/index/index",
       "style": {
+        "navigationBarTitleText": "首页",
         "navigationStyle": "custom",
-        "navigationBarTextStyle": "white",
-        "navigationBarTitleText": "首页"
+        "navigationBarTextStyle": "white"
       }
     },
     {
       "path": "pages/my/my",
       "style": {
+        "navigationBarTitleText": "我的",
         "navigationStyle": "custom",
-        "navigationBarTextStyle": "white",
-        "navigationBarTitleText": "我的"
+        "navigationBarTextStyle": "white"
       }
     },
     {
@@ -56,15 +56,27 @@
       }
     },
     {
+      "path": "pages/goods/components/ServicePanel",
+      "style": {
+        "navigationBarTitleText": "ServicePanel"
+      }
+    },
+    {
       "path": "pages/goods/components/AddressPanel",
       "style": {
         "navigationBarTitleText": "AddressPanel"
       }
     },
     {
-      "path": "pages/goods/components/ServicePanel",
+      "path": "pages/cart/components/CartMain",
       "style": {
-        "navigationBarTitleText": "ServicePanel"
+        "navigationBarTitleText": "CartMain"
+      }
+    },
+    {
+      "path": "pages/cart/cart2",
+      "style": {
+        "navigationBarTitleText": "购物车"
       }
     }
   ],
@@ -130,23 +142,53 @@
         {
           "path": "address/address",
           "style": {
-            "navigationBarTitleText": "地址管理"
+            "navigationBarTitleText": "地址"
           }
         },
         {
           "path": "address/address-form",
           "style": {
-            "navigationBarTitleText": "编辑地址"
+            "navigationBarTitleText": "新建地址"
           }
         }
-      ],
-      // 分包预下载规则
-      "preloadRule": {
-        "pages/my/my": {
-          "network": "all",
-          "packages": ["pagesMember"]
+      ]
+    },
+    {
+      "root": "pagesOrder",
+      "pages": [
+        {
+          "path": "create/create",
+          "style": {
+            "navigationBarTitleText": "填写订单"
+          }
+        },
+        {
+          "path": "detail/detail",
+          "style": {
+            "navigationBarTitleText": "订单详情",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "payment/payment",
+          "style": {
+            "navigationBarTitleText": "支付结果"
+          }
+        },
+        {
+          "path": "list/list",
+          "style": {
+            "navigationBarTitleText": "订单列表"
+          }
         }
-      }
+      ]
     }
-  ]
+  ],
+  // 分包预下载规则
+  "preloadRule": {
+    "pages/my/my": {
+      "network": "all",
+      "packages": ["pagesMember"]
+    }
+  }
 }
