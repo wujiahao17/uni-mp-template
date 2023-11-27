@@ -66,7 +66,7 @@ const onOrderPay = async (id: string) => {
     // #endif
   }
   // 成功提示
-  uni.showToast({ title: '?付成功' })
+  uni.showToast({ title: '支付成功' })
   // 更新订单状态
   const order = orderList.value.find((v) => v.id === id)
   order!.orderState = OrderState.DaiFaHuo
@@ -172,7 +172,7 @@ const onRefresherrefresh = async () => {
       <view class="action">
         <!-- 待付款状态：显示去?付按钮 -->
         <template v-if="order.orderState === OrderState.DaiFuKuan">
-          <view class="button primary" @tap="onOrderPay(order.id)">去?付</view>
+          <view class="button primary" @tap="onOrderPay(order.id)">去支付</view>
         </template>
         <template v-else>
           <navigator
