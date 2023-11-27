@@ -2,7 +2,6 @@
 //@ts-ignore
 import Guess from '@/components/Guess/Guess'
 import type { InputNumberBoxEvent } from '@/components/vk-data-input-number-box/vk-data-input-number-box'
-import type { GuessInstance } from '@/types/component'
 
 //是否适配底部安全区
 defineProps<{
@@ -100,27 +99,28 @@ const gotoPayment = () => {
   uni.navigateTo({ url: '/pagesOrder/create/create' })
 }
 
-// 获取猜你喜欢组件实例
-const guessRef = ref<GuessInstance>()
-// 滚动触底事件
-// const onScrolltolower = () => {
-//   guessRef.value?.getMore()
-// }
+const { guessRef, onScrolltolower } = useGuessList()
 
 // 下拉刷新状态
-// const isTriggered = ref(false)
+const isTriggered = ref(false)
 // 自定义下拉刷新被触发
-// const onRefresherrefresh = async () => {
-//   // 开启动画
-//   isTriggered.value = true
-//   // 重置猜你喜欢组件数据
-//   guessRef.value?.resetData() // 加载数据
-//   isTriggered.value = false
-// }
+const onRefresherrefresh = async () => {
+  // 开启动画
+  isTriggered.value = true
+  // 重置猜你喜欢组件数据
+  guessRef.value?.resetData() // 加载数据
+  isTriggered.value = false
+}
 </script>
 
 <template>
-  <scroll-view scroll-y class="scroll-view">
+  <scroll-view
+    scroll-y
+    class="scroll-view"
+    @scrolltolower="onScrolltolower"
+    :refresher-triggered="isTriggered"
+    @refresherrefresh="onRefresherrefresh"
+  >
     <!-- 已登录: 显示购物车 -->
     <template v-if="memberStore.profile">
       <!-- 购物车列表 -->
